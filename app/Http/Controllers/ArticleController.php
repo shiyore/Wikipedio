@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Services\Businesses\SecurityService;
+use App\Services\Businesses\MarkdownParserService;
 
 class ArticleController extends Controller
 {
@@ -20,6 +21,7 @@ class ArticleController extends Controller
         echo "<script>console.log('searching...' );</script>";
         
         $article = SecurityService::search($title);
+        $article->SetContent (MarkdownParserService::parse($article->GetContent ()));
         
         return view('ViewArticle' , ['article' => $article]);
     }
