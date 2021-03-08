@@ -15,7 +15,7 @@
 		<p><h1 class="display-1 text-center">{{$article->GetTitle()}}</h1></p>
 		<hr/>
 		<br/>
-		<p class="text-left font-weight-normal">{{!! $article->GetContent() !!}}</p>
+		<p class="text-left font-weight-normal">{!! $article->GetContent() !!}</p>
 		<div class="container">
           <div class="row">
             <div class="col-sm-2">
