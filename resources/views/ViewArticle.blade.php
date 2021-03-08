@@ -15,6 +15,10 @@
 		<p><h1 class="display-1 text-center">{{$article->GetTitle()}}</h1></p>
 		<hr/>
 		<br/>
+		<?php 
+		use App\Services\Businesses\MarkdownParserService;
+		$article->SetContent (MarkdownParserService::parse($article->GetContent ()));
+		?>
 		<p class="text-left font-weight-normal">{!! $article->GetContent() !!}</p>
 		<div class="container">
           <div class="row">

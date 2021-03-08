@@ -21,11 +21,17 @@ class ArticleController extends Controller
         echo "<script>console.log('searching...' );</script>";
         
         $article = SecurityService::search($title);
-        $article->SetContent (MarkdownParserService::parse($article->GetContent ()));
+        //$article->SetContent (MarkdownParserService::parse($article->GetContent ()));
         
         return view('ViewArticle' , ['article' => $article]);
     }
     
+    public function wildcardSearch(Request $request){
+        $search_param = $request->get("article_title");
+        
+        $articles = SecurityService::searchArticles($search_param);
+        return view('SearchResults')->with('articles', $articles);
+    }
     public function deleteRequest(Request $request){
         $title = $request->get('article_title');
         

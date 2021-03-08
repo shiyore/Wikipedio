@@ -30,5 +30,8 @@ class SecurityService{
     public static function create(Article $article){
         return ArticleDAO::CreateArticle($article);
     }
+    public static function searchArticles(String $search){
+        return ArticleDAO::ArticleSearch($search);
+    }
 }
 ?>

@@ -191,5 +191,46 @@ public static function CreateArticle (Article $article) {
 			return False;
 		}
 	}
+	
+	/**
+	 * Gets a single article by its title.
+	 * @param string $title The title of the article.
+	 * @return string|\App\Model\Article The article found, or None if there were any exceptions.
+	 */
+	public static function ArticleSearch (string $search) {
+	    $conn = DBConnector::GetConnection();
+	    
+	    if ($conn->connect_error) {
+	        echo ("Connection failed: " . $conn->connect_error);
+	        return None;
+	    }
+	    
+	    try {
+	        $query  = "SELECT * FROM `Article` WHERE ArticleContent Like '%$search%' OR ArticleTitle LIKE '%$search%'";
+	        $result = $conn->query ($query);
+	        
+	        $articles = array ();
+	        
+	        while ($row = $result->fetch_assoc ()) {
+	            $title         = $row['ArticleTitle'];
+	            $content       = $row['ArticleContent'];
+	            $last_revision = $row['LastRevisionDate'];
+	            $creation_date = $row['CreationDate'];
+	           
+	            $articles[] = new Article ($title, $content, $last_revision, $creation_date);
+	        }
+	        
+	        mysqli_free_result($result);
+	        
+	        DBConnector::CloseConnection($conn);
+	        
+	        return $articles;
+	    }
+	    
+	    catch (Exception $e) {
+	        echo $e->getMessage();
+	        return None;
+	    }
+	}
 }
 

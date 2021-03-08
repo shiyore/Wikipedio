@@ -10,7 +10,7 @@
 	@section('navbar')
 
 	@section('content')
-		<div class="row justify-content-center">
+	<div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
                             <form action="{{url('search	')}}" method="post" class="card card-sm">
                             	{{csrf_field()}}
@@ -32,6 +32,26 @@
                         </div>
                         <!--end of col-->
                     </div>
+		<table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+			@foreach($articles as $article)
+				<form action="findArticle" method="POST">
+                    {{csrf_field()}}
+                    <tr>
+						<td>{{$article->GetTitle()}}</td>
+						<td><button type="submit" class="btn btn-light">View</button></td>
+					</tr>
+                    <input type="text" name="article_title" value="{{$article->GetTitle()}}">
+                </form>
+             @endforeach    
+          </tbody>
+        </table>
 	@stop
 </body>
 </html>
