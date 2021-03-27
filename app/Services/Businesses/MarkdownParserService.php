@@ -2,6 +2,7 @@
 
 namespace App\Services\Businesses;
 
+use Illuminate\Support\Facades\Log;
 use Parsedown;
 
 class MarkdownParserService {
@@ -14,6 +15,7 @@ class MarkdownParserService {
 	public static function parse (string $markdown): string {
 		$parser = new Parsedown();
 		$parser->setSafeMode(true);
+		Log::info("Parsing markdown to html");
 		return $parser->text ($markdown);
 	}
 }

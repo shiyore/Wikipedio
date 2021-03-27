@@ -5,6 +5,7 @@ namespace App\Services\Article;
 use App\Model\Article;
 use App\Services\Generic\DBConnector;
 use Faker\Provider\DateTime;
+use Illuminate\Support\Facades\Log;
 
 use Exception;
 
@@ -41,10 +42,12 @@ class ArticleDAO {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Getting all articles");
 			return $articles;
 		}
 		
 		catch (Exception $e) {
+		    Log::error("ArticleDAO: Error getting all articles : " . $e->getMessage());
 			echo $e->getMessage();
 			return None;
 		}
@@ -77,6 +80,7 @@ class ArticleDAO {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Getting article with title : " . $title);
 			return $article;
 		}
 		
@@ -108,6 +112,7 @@ class ArticleDAO {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Updating article with title: " . $article->GetTitle());
 			return $success;
 		}
 		
@@ -139,6 +144,7 @@ class ArticleDAO {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Creating a new article with the title : " . $title);
 			return $success;
 		}
 		

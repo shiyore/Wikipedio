@@ -4,6 +4,7 @@ namespace App\Service\Article;
 
 use App\Model\Article;
 use App\Services\Generic\DBConnector;
+use Illuminate\Support\Facades\Log;
 
 use DateTime;
 use Exception;
@@ -41,10 +42,12 @@ class ArticleDAO {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Getting all articles");
 			return $articles;
 		}
 		
 		catch (Exception $e) {
+		    Log::error("ArticleDAO: Error getting all articles : " . $e->getMessage());
 			echo $e->getMessage();
 			return None;
 		}
@@ -79,11 +82,13 @@ class ArticleDAO {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Getting article with title : " . $title);
 			return $article;
 		}
 		
 		catch (Exception $e) {
 			echo $e->getMessage();
+			Log::error("ArticleDAO: Error finding article ". $title ." : " . $e->getMessage());
 			return "ERROR: " . $e->getMessage();
 		}
 	}
@@ -116,12 +121,13 @@ public static function UpdateArticle (Article $article) {
         
         DBConnector::CloseConnection($conn);
         
+        Log::info("ArticleDAO: Updating article with title: " . $article->GetTitle());
         return $success;
     }
     
     catch (Exception $e) {
         $error =  $e->getMessage();
-        echo "<script>console.log('$error');</script>";
+        Log::error("ArticleDAO: Error with updating title=".$article->GetTitle()." content=".$article->GetContent().": " . $e->getMessage());
         return False;
     }
 }
@@ -152,10 +158,12 @@ public static function CreateArticle (Article $article) {
         
         DBConnector::CloseConnection($conn);
         
+        Log::info("ArticleDAO: Creating a new article with the title : " . $title);
         return $success;
     }
     
     catch (Exception $e) {
+        Log::error("ArticleDAO: Error creating article ".$article->GetContent()." : " . $e->getMessage());
         echo $e->getMessage();
         return False;
     }
@@ -183,10 +191,12 @@ public static function CreateArticle (Article $article) {
 			
 			DBConnector::CloseConnection($conn);
 			
+			Log::info("ArticleDAO: Deleting an article with title : " . $title);
 			return $success;
 		}
 		
 		catch (Exception $e) {
+		    Log::error("ArticleDAO: Error deleting article ".$title." : " . $e->getMessage());
 			echo $e->getMessage();
 			return False;
 		}
@@ -224,10 +234,24 @@ public static function CreateArticle (Article $article) {
 	        
 	        DBConnector::CloseConnection($conn);
 	        
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	        Log::info("ArticleDAO: Searching for all articles with : " . $search);
+=======
+>>>>>>> 3d200cda5312af1eb84039a7b2122db46748581b
+>>>>>>> Stashed changes
 	        return $articles;
 	    }
 	    
 	    catch (Exception $e) {
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	        Log::error("ArticleDAO: Error searching for articles with  ".$search.": " . $e->getMessage());
+=======
+>>>>>>> 3d200cda5312af1eb84039a7b2122db46748581b
+>>>>>>> Stashed changes
 	        echo $e->getMessage();
 	        return None;
 	    }
