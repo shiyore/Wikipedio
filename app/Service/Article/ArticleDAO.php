@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Log;
 use DateTime;
 use Exception;
 
+/**
+ * 
+ * @author Alec
+ * 
+ * Data access object for all our article CRUD methods
+ *
+ */
 class ArticleDAO {
 	
 	/**
@@ -234,24 +241,16 @@ public static function CreateArticle (Article $article) {
 	        
 	        DBConnector::CloseConnection($conn);
 	        
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
 	        Log::info("ArticleDAO: Searching for all articles with : " . $search);
-=======
->>>>>>> 3d200cda5312af1eb84039a7b2122db46748581b
->>>>>>> Stashed changes
+
 	        return $articles;
 	    }
 	    
 	    catch (Exception $e) {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-	        Log::error("ArticleDAO: Error searching for articles with  ".$search.": " . $e->getMessage());
-=======
->>>>>>> 3d200cda5312af1eb84039a7b2122db46748581b
->>>>>>> Stashed changes
+
+	       Log::error("ArticleDAO: Error searching for articles with  ".$search.": " . $e->getMessage());
+
 	        echo $e->getMessage();
 	        return None;
 	    }

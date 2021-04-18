@@ -5,6 +5,13 @@ namespace App\Services\Businesses;
 use Illuminate\Support\Facades\Log;
 use Parsedown;
 
+/**
+ * 
+ * @author Alec
+ * 
+ * used to translate our article content from markdown to html
+ *
+ */
 class MarkdownParserService {
 	
 	/**

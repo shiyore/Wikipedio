@@ -4,6 +4,12 @@ namespace App\Model;
 
 use DateTime;
 
+/**
+ * 
+ * @author Alec
+ *
+ *article model for storing our articles
+ */
 class Article {
 	/**
 	 * @var string title The title of the article. Purposefully cannot set.
@@ -38,26 +44,62 @@ class Article {
 	    $this->creation_date = $creation_date;
 	}
 	
+	/**
+	 * 
+	 * @return string
+	 * 
+	 * returns the title
+	 */
 	public function GetTitle () {
 		return $this->title;
 	}
 	
+	/**
+	 * 
+	 * @return string
+	 * 
+	 * returns the content of the article
+	 */
 	public function GetContent () {
 		return $this->content;
 	}
 	
+	/**
+	 * 
+	 * @param string $content
+	 * 
+	 * sets the content of the article
+	 */
 	public function SetContent (string $content) {
 		$this->content = $content;
 	}
 	
+	/**
+	 * 
+	 * @return DateTime
+	 * 
+	 * returns the date of the last revision
+	 */
 	public function GetLastRevision () {
 		return $this->last_revision;
 	}
 	
+	/**
+	 * 
+	 * @param DateTime $last_revision
+	 * 
+	 * sets the date of the last revision
+	 */
 	public function SetLastRevision (DateTime $last_revision) {
 		$this->last_revision = $last_revision;
 	}
 	
+	/**
+	 * 
+	 * @return DateTime
+	 * 
+	 * gets the date of creation
+	 */
 	public function GetCreationDate () {
 		return $this->creation_date;
 	}
